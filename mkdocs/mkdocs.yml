@@ -1,10 +1,13 @@
 site_name: "Code Everything: Fundamentals of Computer Vision"
+site_url: "https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/"
+copyright: "&copy; 2021 Zendikit"
+site_dir: "../docs"
+strict: true
 
 nav:
   - Home: index.md
-  - About: test.md
-
-# theme: readthedocs
+  - Text:
+    - Introduction: 000_introduction/introduction.md
 
 markdown_extensions:
   - markdown_katex:

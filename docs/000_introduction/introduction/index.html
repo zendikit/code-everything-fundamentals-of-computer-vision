@@ -6,16 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>About - Code Everything: Fundamentals of Computer Vision</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="canonical" href="https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/000_introduction/introduction/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Introduction - Code Everything: Fundamentals of Computer Vision</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Code Everything: Fundamentals of Computer Vision</a>
+                <a class="navbar-brand" href="../..">Code Everything: Fundamentals of Computer Vision</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,16 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">About</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Text <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Introduction</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -48,7 +54,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../.." class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -75,7 +81,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#test" class="nav-link">Test</a>
+            <li class="nav-item" data-level="1"><a href="#code-everything" class="nav-link">Code Everything</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#about-the-author" class="nav-link">About the Author</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#prerequisites" class="nav-link">Prerequisites</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -84,35 +100,48 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-  crossorigin="anonymous" />
-
-<style type="text/css">
-    .katex img {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: inherit;
-    }
-</style>
-<h1 id="test">Test</h1>
-<p>This is a test.</p>
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><msup><mi>x</mi><mn>2</mn></msup><mi>d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\int_{a}^{b} x^2 dx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.399828em;vertical-align:-0.35582em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.044008em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span></span></div>
+<h1 id="code-everything">Code Everything</h1>
+<p>It is said that the deepest mastery of a subject comes from being able to teach
+it. I argue similarly for any concept that can be programmed. Deep mastery of
+such concepts comes from programming them ourselves. Programming is, in a sense,
+teaching computers.</p>
+<p>In this text, we work through the fundamentals of computer vision by coding them
+all on our own. At first, we use no supplementary software libraries. We later
+take on libraries only after we have implemented some functionality of them
+ourselves. In this way, we can more deeply appreciate the convenience the
+software libraries provide and also have a deep technical understanding of what
+the libraries are doing behind their APIs.</p>
+<h1 id="about-the-author">About the Author</h1>
+<p>I am a computer engineer by education and a software engineer by profession. I
+have mostly focused on embedded and systems programming in my career to date
+(2021). I had the opportunity join a machine learning team for perception in
+autonomous vehicles, and my interest in computer vision and machine learning led
+me to pursue that opportunity. With no formal background in or experience with
+computer vision, I had to teach myself on the job and after hours. This text is
+a result of my journey, prepared for others who may find themselves in my former
+shoes or sympathize with my approach to learning.</p>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>This text won't teach the fundamentals of computer science, nay, programming.
+You may implement the material in this text using whichever language you are
+most comfortable with. I will give demonstrations in Python 3. I expect the
+reader to have general readability in languages like Python to follow along. In
+our journey, we will use some third-party Python libraries like
+<a href="https://numpy.org/">NumPy</a> and <a href="https://opencv.org/">OpenCV 2</a> and also
+image-manipulation software like <a href="https://www.gimp.org/">GIMP</a>.</p></div>
             </div>
         </div>
 
         <footer class="col-md-12">
             <hr>
+                <p>&copy; 2021 Zendikit</p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

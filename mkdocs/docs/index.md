@@ -1,17 +1,9 @@
-# Welcome to MkDocs
+# Code the Fundamentals of Computer Vision
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This is the text for _Code Everything: Fundamentals of Computer Vision_. This
+text will teach you the fundamentals of computer vision from first principles by
+having you implement each technique and peice of theory from scratch, using as
+few libraries as is reasonably possible.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Use the site navigation to continue reading, and if you are just beginning, do
+start from the [Introduction](000_introduction/introduction.md).

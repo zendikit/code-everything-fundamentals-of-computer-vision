@@ -7,9 +7,10 @@ repos:
     rev: v2.2.1
     hooks:
       - id: prettier
+        args: [--prose-wrap=always]
         types: [markdown]
         files: |
           (?x)^(
             README.md|
             mkdocs/docs/
-          )$
+          )
