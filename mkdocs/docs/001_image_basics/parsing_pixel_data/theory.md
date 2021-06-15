@@ -1,0 +1,3 @@
+# Parsing Pixel Data
+
+## Theory
