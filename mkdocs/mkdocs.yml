@@ -2,15 +2,33 @@ site_name: "Code Everything: Fundamentals of Computer Vision"
 site_url: "https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/"
 copyright: "&copy; 2021 Zendikit"
 site_dir: "../docs"
-strict: true
+# strict: true
 
 nav:
   - Home: index.md
   - Text:
     - Introduction: 000_introduction/introduction.md
+    - Chapter 1 - Image Basics:
+      - About Images: 001_image_basics/about_images.md
+      - Parsing Image Metadata:
+        - Theory: 001_image_basics/parsing_image_metadata/theory.md
+        - Challenge: 001_image_basics/parsing_image_metadata/challenge.md
+        - Implementation: 001_image_basics/parsing_image_metadata/implementation.md
+      - Parsing Pixel Data:
+        - Theory: 001_image_basics/parsing_pixel_data/theory.md
+        - Challenge: 001_image_basics/parsing_pixel_data/challenge.md
+        - Implementation: 001_image_basics/parsing_pixel_data/implementation.md
+
+theme:
+  name: material
 
 markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
   - markdown_katex:
       no_inline_svg: True
       insert_fonts_css: True
       # macro-file: macros.tex
+  - toc:
+      permalink: true
+      toc_depth: 3

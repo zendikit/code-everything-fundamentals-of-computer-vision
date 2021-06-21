@@ -5,6 +5,16 @@ of Computer Vision_.
 
 ## Development
 
-This site is built using [MkDocs](https://www.mkdocs.org/). Math elements are
-rendered with the [markdown-katex](https://pypi.org/project/markdown-katex/)
-plugin.
+First, install all dependencies.
+
+1. Python3.6 or newer
+1. `pip install --user mkdocs`
+1. `pip install --user mkdocs-material`
+1. `pip install --user markdown-katex`
+
+Then, you can launch the development server with
+
+```sh
+$ cd <project_root>/mkdocs
+$ mkdocs serve
+```
