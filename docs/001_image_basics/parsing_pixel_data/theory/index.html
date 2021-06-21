@@ -9,21 +9,21 @@
       
       
       
-        <link rel="canonical" href="https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/000_introduction/introduction/">
+        <link rel="canonical" href="https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_pixel_data/theory/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
     
     
       
-        <title>Introduction - Code Everything: Fundamentals of Computer Vision</title>
+        <title>Theory - Code Everything: Fundamentals of Computer Vision</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -55,7 +55,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#code-everything" class="md-skip">
+        <a href="#parsing-pixel-data" class="md-skip">
           Skip to content
         </a>
       
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Code Everything: Fundamentals of Computer Vision" class="md-header__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-header__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Theory
             
           </span>
         </div>
@@ -154,7 +154,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Code Everything: Fundamentals of Computer Vision" class="md-nav__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-nav__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -173,7 +173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -209,21 +209,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../000_introduction/introduction/" class="md-nav__link">
         Introduction
       </a>
-      
     </li>
   
 
@@ -231,12 +221,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2">
         Chapter 1 - Image Basics
@@ -254,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/about_images/" class="md-nav__link">
+      <a href="../../about_images/" class="md-nav__link">
         About Images
       </a>
     </li>
@@ -287,7 +279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_image_metadata/theory/" class="md-nav__link">
+      <a href="../../parsing_image_metadata/theory/" class="md-nav__link">
         Theory
       </a>
     </li>
@@ -299,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_image_metadata/challenge/" class="md-nav__link">
+      <a href="../../parsing_image_metadata/challenge/" class="md-nav__link">
         Challenge
       </a>
     </li>
@@ -311,7 +303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_image_metadata/implementation/" class="md-nav__link">
+      <a href="../../parsing_image_metadata/implementation/" class="md-nav__link">
         Implementation
       </a>
     </li>
@@ -327,12 +319,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" checked>
       
       <label class="md-nav__link" for="__nav_2_2_3">
         Parsing Pixel Data
@@ -348,11 +342,65 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_pixel_data/theory/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Theory
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Theory
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#theory" class="md-nav__link">
+    Theory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chw" class="md-nav__link">
+    CHW
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hwc" class="md-nav__link">
+    HWC
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -362,7 +410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_pixel_data/challenge/" class="md-nav__link">
+      <a href="../challenge/" class="md-nav__link">
         Challenge
       </a>
     </li>
@@ -374,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../001_image_basics/parsing_pixel_data/implementation/" class="md-nav__link">
+      <a href="../implementation/" class="md-nav__link">
         Implementation
       </a>
     </li>
@@ -418,6 +466,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#theory" class="md-nav__link">
+    Theory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chw" class="md-nav__link">
+    CHW
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hwc" class="md-nav__link">
+    HWC
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -429,40 +506,56 @@
               
                 
                 
-                <h1 id="code-everything">Code Everything<a class="headerlink" href="#code-everything" title="Permanent link">&para;</a></h1>
-<p>It is said that one doesn't really know a subject until they teach it. I argue
-similarly for any concept that can be programmed: deep mastery of such concepts
-comes from programming them ourselves. Programming is, in a sense, teaching
-computers.</p>
-<p>In this text, we work through the fundamentals of computer vision by coding them
-all on our own. Where reasonable, we use no supplementary software libraries
-until we have implemented some functionality of them ourselves. In this way, we
-build a deeper technical understanding of what the libraries are doing behind
-their APIs.</p>
-<h1 id="about-the-author">About the Author<a class="headerlink" href="#about-the-author" title="Permanent link">&para;</a></h1>
-<p>I am a computer engineer by education and a software engineer by profession. I
-have mostly focused on embedded and systems programming in my career to date
-(2021). I had the opportunity to join a machine learning team for perception in
-autonomous vehicles, and my interest in computer vision and machine learning led
-me to pursue that opportunity. With no formal background in or experience with
-computer vision, I had to teach myself on the job and after hours. This text is
-a result of my journey, prepared for others who may find themselves in my former
-shoes or sympathize with my approach to learning.</p>
-<h1 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h1>
-<p>This text won't teach the fundamentals of computer science, nay, programming.
-You must be able to write your own general programs. You may implement the
-material in this text using whichever language you are most comfortable with. I
-will give demonstrations in Python 3 with occassional explanation in C or C++. I
-expect the reader to have general readability in languages like Python to follow
-along. In our journey, we will use some third-party Python libraries like
-<a href="https://numpy.org/">NumPy</a> and <a href="https://opencv.org/">OpenCV 2</a> and also
-image-manipulation software like <a href="https://www.gimp.org/">GIMP</a>.</p>
-<h1 id="organization">Organization<a class="headerlink" href="#organization" title="Permanent link">&para;</a></h1>
-<p>Every section that contains something to be coded is organized into three
-subsections. The first is <strong>Theory</strong> which explains a concept. The second is
-<strong>Challenge</strong> which presents the reader with a coding challenge based on the
-material in <strong>Theory</strong>. And the last is <strong>Implementation</strong> which demonstrates
-one way to solve the problem statement in <strong>Challenge</strong>.</p>
+                <h1 id="parsing-pixel-data">Parsing Pixel Data<a class="headerlink" href="#parsing-pixel-data" title="Permanent link">&para;</a></h1>
+<h2 id="theory">Theory<a class="headerlink" href="#theory" title="Permanent link">&para;</a></h2>
+<p>If we intended for the bitmap metadata-parsing tool we wrote earlier to be a general image-processing tool, we'd want a way to parse a variety of image types and present their pixel data in a single format,
+independent of the original file type. When parsing pixel data from a file, you need to consider two things primarily. The first is general metadata such as bits per pixel, the color space the pixels are
+encoded in, number of channels, and image width and height. The second is whether or not you can simply read the values as binary out of the image file or if you first need to decompress the pixel data.</p>
+<p>In our specific case, with a grayscale bitmap v4 image with a width evenly divisible by 4 [recall from the previous section that a row of a bitmap's pixel array is padded to be evenly divisible by 4], we
+made our life very easy. The pixels are packed contiguously as individual bytes right in the file--no decompression necessary or color channels to deal with.</p>
+<p>We won't cover compression here. When you're dealing with pixels in RAM later on, which is what we want to focus more on, they will be uncompressed.</p>
+<p>Regarding pixel encoding, though, if images have <code>C</code> channels, <code>W</code> width, and <code>H</code> height, then their pixel values are often encoded in what we call CHW (sometimes CWH) or HWC (sometimes WHC).</p>
+<h2 id="chw">CHW<a class="headerlink" href="#chw" title="Permanent link">&para;</a></h2>
+<p>Think of CHW, for example, as "channels, then height, then width," meaning that in the file's pixel array we first have all pixels (width * height) for the first color channel, and then the next set of
+pixels (width * height) for the second color channel, etc. If pixels were encoded as CHW, we could iterate over a flat array of pixels as</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">CHANNELS</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
+            <span class="n">pixel_value</span> <span class="o">=</span> <span class="n">pixel_data</span><span class="p">[</span><span class="n">c</span> <span class="o">*</span> <span class="n">WIDTH</span> <span class="o">*</span> <span class="n">HEIGHT</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">WIDTH</span> <span class="o">+</span> <span class="n">w</span><span class="p">]</span>
+</code></pre></div>
+<p>Note that in CHW the first dimension (channels) is the outermost loop and the last dimension (width) is the innermost loop. Seen another way, the width value changes the fastest, then the height, and lastly
+the channels. If we drew the array for a 3-channel image and represented coordinates as <code>(row, column)</code>, it would look like</p>
+<div class="highlight"><pre><span></span><code>(0, 0)---------------------------------------------------(0, WIDTH - 1) 
+  |                                                              |
+  |                          Channel 1                           |
+  |                                                              |
+  |                                                              |
+(HEIGHT - 1, 0)------------------------------------------(HEIGHT - 1, WIDTH - 1)
+  |                                                              |
+  |                          Channel 2                           |
+  |                                                              |
+  |                                                              |
+(2 * HEIGHT - 2, 0)----------------------------------(2 * HEIGHT - 2, WIDTH - 1)
+  |                                                              |
+  |                          Channel 3                           |
+  |                                                              |
+  |                                                              |
+  +--------------------------------------------------------------+ 
+</code></pre></div>
+<h2 id="hwc">HWC<a class="headerlink" href="#hwc" title="Permanent link">&para;</a></h2>
+<p>The other popular encoding interleaves the channel values for each pixel. We could iterate over a flat array of such pixels as</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">CHANNELS</span><span class="p">):</span>
+            <span class="n">pixel_value</span> <span class="o">=</span> <span class="n">pixel_data</span><span class="p">[</span><span class="n">w</span> <span class="o">*</span> <span class="n">CHANNELS</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">WIDTH</span> <span class="o">*</span> <span class="n">CHANNELS</span> <span class="o">+</span> <span class="n">c</span><span class="p">]</span>
+</code></pre></div>
+<p>If we are dealing with RGB (the red-green-blue color space) and represent a pixel's channel values as <code>Rn</code>, <code>Gn</code>, <code>Bn</code>, where <code>n</code> is the index of a particular pixel in the pixel data, the memory layout
+looks like</p>
+<div class="highlight"><pre><span></span><code>Index:   0    1     2    3    4    5    ...
+       +----+----+----+----+----+----+--------+
+       | R1 | G1 | B1 | R2 | G2 | B2 | &lt;etc.&gt; |
+       +----+----+----+----+----+----+--------+
+</code></pre></div>
                 
               
               
@@ -482,7 +575,7 @@ one way to solve the problem statement in <strong>Challenge</strong>.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+        <a href="../../parsing_image_metadata/implementation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Implementation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -491,20 +584,20 @@ one way to solve the problem statement in <strong>Challenge</strong>.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Implementation
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../001_image_basics/about_images/" class="md-footer__link md-footer__link--next" aria-label="Next: About Images" rel="next">
+        <a href="../challenge/" class="md-footer__link md-footer__link--next" aria-label="Next: Challenge" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              About Images
+              Challenge
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -537,10 +630,10 @@ one way to solve the problem statement in <strong>Challenge</strong>.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
       
     
   </body>

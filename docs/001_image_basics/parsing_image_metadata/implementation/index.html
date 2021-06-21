@@ -1,0 +1,996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_image_metadata/implementation/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Implementation - Code Everything: Fundamentals of Computer Vision</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#parsing-image-metadata" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-header__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Everything: Fundamentals of Computer Vision
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-nav__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Code Everything: Fundamentals of Computer Vision
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Text
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Text" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Text
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../000_introduction/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Chapter 1 - Image Basics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Chapter 1 - Image Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Chapter 1 - Image Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about_images/" class="md-nav__link">
+        About Images
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2_2_2">
+        Parsing Image Metadata
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Parsing Image Metadata" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Parsing Image Metadata
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theory/" class="md-nav__link">
+        Theory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge/" class="md-nav__link">
+        Challenge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Implementation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Implementation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitmapv4" class="md-nav__link">
+    BitmapV4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitmapfileheader" class="md-nav__link">
+    BitmapFileHeader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v4infoheader" class="md-nav__link">
+    V4InfoHeader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciexyz-and-ciexyztriple" class="md-nav__link">
+    CIEXYZ and CIEXYZTriple
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_2_3">
+        Parsing Pixel Data
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Parsing Pixel Data" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Parsing Pixel Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parsing_pixel_data/theory/" class="md-nav__link">
+        Theory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parsing_pixel_data/challenge/" class="md-nav__link">
+        Challenge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parsing_pixel_data/implementation/" class="md-nav__link">
+        Implementation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitmapv4" class="md-nav__link">
+    BitmapV4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitmapfileheader" class="md-nav__link">
+    BitmapFileHeader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v4infoheader" class="md-nav__link">
+    V4InfoHeader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciexyz-and-ciexyztriple" class="md-nav__link">
+    CIEXYZ and CIEXYZTriple
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css"
+  integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc"
+  crossorigin="anonymous" />
+
+<style type="text/css">
+    .katex img {
+      object-fit: fill;
+      padding: unset;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: inherit;
+    }
+</style>
+<h1 id="parsing-image-metadata">Parsing Image Metadata<a class="headerlink" href="#parsing-image-metadata" title="Permanent link">&para;</a></h1>
+<h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
+<p>When implementing our bitmap parser, <code>bp</code>, let's start with basic functionality
+that enables us to modify our parser, run it against input, and see what
+changed. This way we can quickly visually debug things.</p>
+<h2 id="main"><code>main</code><a class="headerlink" href="#main" title="Permanent link">&para;</a></h2>
+<p>Our main script will be <code>bp.py</code>. We'll use <code>argparse</code> to build a CLI that takes
+as input a pathname to an image file. We'll open that file for reading as
+binary, slurp its contents, and pass them to a (currently stub) <code>BitmapV4</code> class
+for parsing.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3 -B</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="k">class</span> <span class="nc">BitmapV4</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Limited-functionality bitmap parser&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;An image file pathname&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">BitmapV4</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>At this point, you can run your program, and if your input file exists, your
+program will print details about your <code>BitmapV4</code> instance.</p>
+<div class="highlight"><pre><span></span><code>$ chmod +x bp.py
+$ ./bp.py 2021-02-22-tokyo-skytree-grayscale.bmp
+&lt;__main__.BitmapV4 object at 0x7fcd816bad30&gt;
+</code></pre></div>
+<h2 id="bitmapv4"><code>BitmapV4</code><a class="headerlink" href="#bitmapv4" title="Permanent link">&para;</a></h2>
+<p>We'll do our bitmap parsing logic in <code>BitmapV4</code> and some additional classes. If
+this were a proper tool, we might have an <code>Image</code> base class with some generic
+properties like <code>width</code>, <code>height</code>, and <code>pixels</code> so that we could parse various
+image file types in corresponding classes but present a common API to the user
+through polymorphism. We won't go that far here, though.</p>
+<p>We anticipate having to parse the general bitmap file header and also the V4
+header, so we create class stubs for those. In the <code>BitmapV4</code> constructor, we
+pass the bitmap data and a corresponding byte offset to constructors of the
+header stubs.</p>
+<p>We define our own <code>__str__</code> method which will now be used when we call
+<code>print(image)</code> as we did in <code>main()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BitmapFileHeader</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">V4InfoHeader</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">BitmapV4</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            data(bytes): The binary data of an entire bitmap image file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_header</span> <span class="o">=</span> <span class="n">BitmapFileHeader</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_header</span> <span class="o">=</span> <span class="n">V4InfoHeader</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_header</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">info_header</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Running our program now prints something similar to</p>
+<div class="highlight"><pre><span></span><code>$ ./bp.py 2021-02-22-tokyo-skytree-grayscale.bmp
+&lt;__main__.BitmapFileHeader object at 0x7f3acd451610&gt;
+&lt;__main__.V4InfoHeader object at 0x7f3acd49a9d0&gt;
+</code></pre></div>
+<h2 id="bitmapfileheader"><code>BitmapFileHeader</code><a class="headerlink" href="#bitmapfileheader" title="Permanent link">&para;</a></h2>
+<p>Our <code>BitmapFileHeader</code> corresponds to the official bitmap <code>BITMAPFILEHEADER</code>.</p>
+<p>We use the <a href="https://docs.python.org/3.8/library/struct.html"><code>struct</code></a> module to
+parse the image byte array. The struct module returns tuples, and we don't want
+to create an intermediate data structure that essentially mirrors our class
+members, so we unpack the tuple in-place. Remember that bitmap data is stored
+unconditionally in little endian. Therefore, our <code>struct.unpack_from</code> format
+string leads with <code>&lt;</code> indicating little endian. <code>H</code> indicates an unsigned 16-bit
+integer, and <code>I</code> indicates an unsigned 32-bit integer.</p>
+<p>We define our own <code>__str__</code> method which prints information about our instance.
+Since the "magic" bytes are stored in little endian, we have to swap the two
+lowest bytes and then convert them to characters before printing in order to see
+the text "BM."</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">struct</span>
+
+<span class="k">class</span> <span class="nc">BitmapFileHeader</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse a bitmap file header from a byte array.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data(bytes): Binary data read from a bitmap file.</span>
+<span class="sd">            offset(int): The byte offset in `data` at which parsing starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_type</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">reserved_1</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">reserved_2</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_data_offset_bytes</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span>
+            <span class="s2">&quot;&lt;HIHHI&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">magic_byte_1</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_type</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span>
+        <span class="n">magic_byte_2</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">file_type</span> <span class="o">&amp;</span> <span class="mh">0xff00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;File type        : </span><span class="si">{</span><span class="n">magic_byte_1</span><span class="si">}{</span><span class="n">magic_byte_2</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+               <span class="sa">f</span><span class="s2">&quot;Size             : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="si">}</span><span class="s2"> bytes</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+               <span class="sa">f</span><span class="s2">&quot;Pixel data offset: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pixel_data_offset_bytes</span><span class="si">}</span><span class="s2"> bytes&quot;</span>
+</code></pre></div>
+<p>Now our program will print something more interesting.</p>
+<div class="highlight"><pre><span></span><code>$ ./bp 2021-02-22-tokyo-skytree-grayscale.bmp
+File type        : BM
+Size             : 263290 bytes
+Pixel data offset: 1146 bytes
+&lt;__main__.V4InfoHeader object at 0x7f2d5c153a00&gt;
+</code></pre></div>
+<p><code>du</code> confirms the file size.</p>
+<div class="highlight"><pre><span></span><code>$ du -b ./2021-02-22-tokyo-skytree-grayscale.bmp
+263290  ./2021-02-22-tokyo-skytree-grayscale.bmp
+</code></pre></div>
+<h2 id="v4infoheader"><code>V4InfoHeader</code><a class="headerlink" href="#v4infoheader" title="Permanent link">&para;</a></h2>
+<p>Our <code>V4InfoHeader</code> corresponds to the official bitmap <code>BITMAPV4HEADER</code>.</p>
+<p>Parsing <code>V4InfoHeader</code> is a lot like parsing <code>BitmapFileHeader</code> except that our
+constructor delegates to another constructor partway through parsing. Also, some
+of our fields are in fixed (x.y) notation, so we need to convert them after
+parsing. We do this by assigning the parsed value to a temporary, dividing that
+temporary by <code>2**y</code>, and then assigning the quotient to a member variable. Note
+also that we have to manually adjust <code>offset</code> as we parse different parts of
+<code>data</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CIEXYZ</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">CIEXYZTriple</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">V4InfoHeader</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse a bitmap version 4 info header from a byte array.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data(bytes): Binary data read from a bitmap file.</span>
+<span class="sd">            offset(int): The byte offset in `data` at which parsing starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">width_px</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">height_px</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_color_planes</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_bits_per_pixel</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">compression_type</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_data_size_bytes</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixels_per_meter_width</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixels_per_meter_height</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_colors_used</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_colors_required</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">red_bitmask</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">green_bitmask</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">blue_bitmask</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_bitmask</span><span class="p">,</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_space_type</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span>
+            <span class="s2">&quot;&lt;IiiHHIIiiIIIIIII&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_space_endpoints</span> <span class="o">=</span> <span class="n">CIEXYZTriple</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">60</span><span class="p">)</span>
+
+        <span class="n">red_gamma</span><span class="p">,</span> \
+        <span class="n">green_gamma</span><span class="p">,</span> \
+        <span class="n">blue_gamma</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span><span class="s2">&quot;&lt;III&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">96</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">red_gamma</span> <span class="o">=</span> <span class="n">red_gamma</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">30</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">green_gamma</span> <span class="o">=</span> <span class="n">green_gamma</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">30</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blue_gamma</span> <span class="o">=</span> <span class="n">blue_gamma</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">30</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> \
+            <span class="sa">f</span><span class="s2">&quot;Size                     : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="si">}</span><span class="s2"> bytes</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Width                    : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">width_px</span><span class="si">}</span><span class="s2"> px</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Height                   : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">height_px</span><span class="si">}</span><span class="s2"> px</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Number of color planes   : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_color_planes</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Number of bits per pixel : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_bits_per_pixel</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Compression type         : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">compression_type</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Pixel data size          : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pixel_data_size_bytes</span><span class="si">}</span><span class="s2"> bytes</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Width resolution         : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pixels_per_meter_width</span><span class="si">}</span><span class="s2"> ppm</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Height resolution        : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pixels_per_meter_height</span><span class="si">}</span><span class="s2"> ppm</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Number of colors used    : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_colors_used</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Number of colors required: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_colors_required</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Red bitmask              : 0x</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">red_bitmask</span><span class="si">:</span><span class="s2">X</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Green bitmask            : 0x</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">green_bitmask</span><span class="si">:</span><span class="s2">X</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Blue bitmask             : 0x</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">blue_bitmask</span><span class="si">:</span><span class="s2">X</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Alpha bitmask            : 0x</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_bitmask</span><span class="si">:</span><span class="s2">X</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Color space type         : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">color_space_type</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Color space endpoints    : </span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">color_space_endpoints</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Red gamma                : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">red_gamma</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Green gamma              : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">green_gamma</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+            <span class="sa">f</span><span class="s2">&quot;Blue gamma               : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">blue_gamma</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>We can run our program again and see additional, interesting output.</p>
+<div class="highlight"><pre><span></span><code>$ ./bp 2021-02-22-tokyo-skytree-grayscale.bmp
+File type        : BM
+Size             : 263290 bytes
+Pixel data offset: 1146 bytes
+Size                     : 108 bytes
+Width                    : 512 px
+Height                   : 512 px
+Number of color planes   : 1
+Number of bits per pixel : 8
+Compression type         : 0
+Pixel data size          : 262144 bytes
+Width resolution         : 11811 ppm
+Height resolution        : 11811 ppm
+Number of colors used    : 256
+Number of colors required: 256
+Red bitmask              : 0x73524742
+Green bitmask            : 0x0
+Blue bitmask             : 0x0
+Alpha bitmask            : 0x0
+Color space type         : 0
+Color space endpoints    :
+&lt;__main__.CIEXYZTriple object at 0x7fa28c7c5100&gt;
+Red gamma                : 0.0
+Green gamma              : 0.0
+Blue gamma               : 0.0
+</code></pre></div>
+<p>Let's confirm the output. Using an image viewer, we can confirm that our input image is indeed 512x512 pixels, so the height and width are okay. From the documentation, we expect the number of color planes
+to be 1, so that is also okay.</p>
+<p>As for bits per pixel, since our image is grayscale, each pixel is encoded as a single intensity value of black (that is, we have only one "color" channel). If there are 8 bits per pixel, the possible
+pixel values are [0, 255]. Other image properties agree with our 8 bpp report, too. For example, the number of colors used and the number of colors required. But even more telling is the pixel data size.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>pixel data size</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>width</mtext><mo>⋅</mo><mtext>height</mtext><mo>⋅</mo><mtext>num channels</mtext><mo>⋅</mo><mtext>bytes per pixel</mtext></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>512</mn><mo>⋅</mo><mn>512</mn><mo>⋅</mo><mn>1</mn><mo>⋅</mo><mn>1</mn></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>262144</mn></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{align}
+\text {pixel data size} &amp;= \text {width} \cdot \text {height} \cdot \text {num channels} \cdot \text {bytes per pixel} \\
+&amp; = 512 \cdot 512 \cdot 1 \cdot 1 \\
+&amp; = 262144
+\end{align}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.500000000000002em;vertical-align:-2.000000000000001em;"></span><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.66em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">pixel data size</span></span></span></span><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span><span style="top:-1.6599999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.66em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord">width</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">height</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">num channels</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">bytes per pixel</span></span></span></span><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">512</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">512</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-1.6599999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">262144</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.5em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span><span style="top:-3em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span><span style="top:-1.4999999999999991em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span></span></span></span></p>
+<p>Note that in (1) above we are concerned with <em>bytes</em> per pixel. We see that our pixel data size agrees with our other measurements!</p>
+<p>With confidence in our pixel data size, we can now confirm our file header's pixel data offset. If we add the pixel data size to the data offset, we should get the total file size.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.2500em" columnalign="right left" columnspacing="0em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>file size</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>pixel data offset</mtext><mo>+</mo><mtext>pixel data size</mtext></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1146</mn><mo>+</mo><mn>262144</mn></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>263290</mn></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{align}
+\text {file size} &amp;= \text {pixel data offset} + \text {pixel data size} \\
+&amp;= 1146 + 262144 \\
+&amp;= 263290
+\end{align}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.500000000000002em;vertical-align:-2.000000000000001em;"></span><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.66em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">file size</span></span></span></span><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span><span style="top:-1.6599999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.66em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord">pixel data offset</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">pixel data size</span></span></span></span><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1146</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">262144</span></span></span><span style="top:-1.6599999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">263290</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.5000000000000004em;"><span style="top:-4.5em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span><span style="top:-3em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span><span style="top:-1.4999999999999991em;"><span class="pstrut" style="height:2.84em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.000000000000001em;"><span></span></span></span></span></span></span></span></span></p>
+<p>which does indeed agree with the file size reported internally (in the <code>size</code> field in the file header) and externally using tools like <code>du</code>.</p>
+<p>We ignore the width and height resolution as they're not important to our learning here.</p>
+<p>Do note the red bitmask, though. It is non-zero, but does it matter? The answer is no, according to the bitmap documentation. Our compression type is 0, indicating an uncompressed format that disregards the
+RGB bitmasks. That the red bitmask is non-zero here seems to be an artifact from GIMP (in the case of our sample image), but it is of no other concern to us.</p>
+<p>We are okay with the RGB gamma values being 0 because our image is grayscale.</p>
+<h2 id="ciexyz-and-ciexyztriple"><code>CIEXYZ</code> and <code>CIEXYZTriple</code><a class="headerlink" href="#ciexyz-and-ciexyztriple" title="Permanent link">&para;</a></h2>
+<p><code>CIEXYZ</code> and <code>CIEXYZTriple</code> correspond to the official bitmap <code>CIEXYZ</code> and
+<code>CIEXYZTRIPLE</code> data structures.</p>
+<p>Parsing these is straightforward by now and uses no techniques we haven't seen
+already.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CIEXYZ</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse a color endpoint from a byte array.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data(bytes): Binary data read from a bitmap file.</span>
+<span class="sd">            offset(int): The byte offset in `data` at which parsing starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> \
+        <span class="n">y</span><span class="p">,</span> \
+        <span class="n">z</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span><span class="s2">&quot;&lt;III&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">16</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">CIEXYZTriple</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse color endpoints in a color space from a byte array.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data(bytes): Binary data read from a bitmap file.</span>
+<span class="sd">            offset(int): The byte offset in `data` at which parsing starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">red</span> <span class="o">=</span> <span class="n">CIEXYZ</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">green</span> <span class="o">=</span> <span class="n">CIEXYZ</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blue</span> <span class="o">=</span> <span class="n">CIEXYZ</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">24</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;red  : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">red</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+               <span class="sa">f</span><span class="s2">&quot;green: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+               <span class="sa">f</span><span class="s2">&quot;blue : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">blue</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>If we run our program against our image again, we see</p>
+<div class="highlight"><pre><span></span><code>$ ./bp 2021-02-22-tokyo-skytree-grayscale.bmp
+File type        : BM
+Size             : 263290 bytes
+Pixel data offset: 1146 bytes
+Size                     : 108 bytes
+Width                    : 512 px
+Height                   : 512 px
+Number of color planes   : 1
+Number of bits per pixel : 8
+Compression type         : 0
+Pixel data size          : 262144 bytes
+Width resolution         : 11811 ppm
+Height resolution        : 11811 ppm
+Number of colors used    : 256
+Number of colors required: 256
+Red bitmask              : 0x73524742
+Green bitmask            : 0x0
+Blue bitmask             : 0x0
+Alpha bitmask            : 0x0
+Color space type         : 0
+Color space endpoints    : 
+red  : (0.0, 0.0, 0.0)
+green: (0.0, 0.0, 0.0)
+blue : (0.0, 0.0, 3.0517578125e-05)
+Red gamma                : 0.0
+Green gamma              : 0.0
+Blue gamma               : 0.0
+</code></pre></div>
+<p>The new information here is that of the color space endpoints. All values are 0 except the last element of the blue endpoint (which is still very close to 0 in this case). Unlike the value for the red
+bitmask which the documentation suggested we can ignore, our color space type is 0 here indicating (again, from the documentation) that we must take the color endpoints into consideration. However, these
+are endpoints for an RGB color space, but we know that our image is grayscale, so we can actually disregard these values. The non-zero element in the blue endpoint seems to again be an artifact of GIMP.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>This concludes our work for parsing metadata for a bitmap v4 image. Take a moment to consider the many image file formats in existence today, and also think about the many image formats your operating
+system can render for you with only a few clicks or keystrokes! It's nice to not have to deal with this kind of boilerplate work.
+In the future, we will use libraries to handle all of this parsing for us.
+We're not quite there yet, though. In the next section, we'll parse the pixel data out of our test image by hand.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../challenge/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Challenge" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Challenge
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../parsing_pixel_data/theory/" class="md-footer__link md-footer__link--next" aria-label="Next: Theory" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Theory
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2021 Zendikit
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

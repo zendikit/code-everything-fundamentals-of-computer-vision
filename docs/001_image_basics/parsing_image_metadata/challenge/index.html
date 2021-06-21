@@ -9,19 +9,21 @@
       
       
       
-      <link rel="icon" href="/code-everything-fundamentals-of-computer-vision/assets/images/favicon.png">
+        <link rel="canonical" href="https://zendikit.github.io/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_image_metadata/challenge/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
     
     
       
-        <title>Code Everything: Fundamentals of Computer Vision</title>
+        <title>Challenge - Code Everything: Fundamentals of Computer Vision</title>
       
     
     
-      <link rel="stylesheet" href="/code-everything-fundamentals-of-computer-vision/assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="/code-everything-fundamentals-of-computer-vision/assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -53,12 +55,17 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL("/code-everything-fundamentals-of-computer-vision/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#parsing-image-metadata" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -67,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/code-everything-fundamentals-of-computer-vision/." title="Code Everything: Fundamentals of Computer Vision" class="md-header__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-header__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -86,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Challenge
             
           </span>
         </div>
@@ -147,7 +154,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/code-everything-fundamentals-of-computer-vision/." title="Code Everything: Fundamentals of Computer Vision" class="md-nav__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
+    <a href="../../.." title="Code Everything: Fundamentals of Computer Vision" class="md-nav__button md-logo" aria-label="Code Everything: Fundamentals of Computer Vision" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -166,7 +173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -179,12 +186,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         Text
@@ -202,7 +211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/000_introduction/introduction/" class="md-nav__link">
+      <a href="../../../000_introduction/introduction/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -212,12 +221,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2">
         Chapter 1 - Image Basics
@@ -235,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/about_images/" class="md-nav__link">
+      <a href="../../about_images/" class="md-nav__link">
         About Images
       </a>
     </li>
@@ -245,12 +256,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2_2">
         Parsing Image Metadata
@@ -268,7 +281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_image_metadata/theory/" class="md-nav__link">
+      <a href="../theory/" class="md-nav__link">
         Theory
       </a>
     </li>
@@ -278,11 +291,51 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_image_metadata/challenge/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Challenge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Challenge
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -292,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_image_metadata/implementation/" class="md-nav__link">
+      <a href="../implementation/" class="md-nav__link">
         Implementation
       </a>
     </li>
@@ -331,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_pixel_data/theory/" class="md-nav__link">
+      <a href="../../parsing_pixel_data/theory/" class="md-nav__link">
         Theory
       </a>
     </li>
@@ -343,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_pixel_data/challenge/" class="md-nav__link">
+      <a href="../../parsing_pixel_data/challenge/" class="md-nav__link">
         Challenge
       </a>
     </li>
@@ -355,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code-everything-fundamentals-of-computer-vision/001_image_basics/parsing_pixel_data/implementation/" class="md-nav__link">
+      <a href="../../parsing_pixel_data/implementation/" class="md-nav__link">
         Implementation
       </a>
     </li>
@@ -387,11 +440,87 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                
+                <h1 id="parsing-image-metadata">Parsing Image Metadata<a class="headerlink" href="#parsing-image-metadata" title="Permanent link">&para;</a></h1>
+<h2 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h2>
+<p>Write a command-line program that takes an image file as its input and prints
+all parsed image metadata as output. You don't have to deal with the pixel array yet.
+If you'll be parsing a bitmap v4 image, use the data structure definitions in
+<a href="../theory/">Theory</a> (or supplemental documentation) to guide your development.</p>
+<p>Below is output from our bitmap parser (<code>bp.py</code>) program when passed our
+provided sample image of the Tokyo Skytree. Note that most values are printed as
+read out of the image file, but some values are adjusted before printing (for
+example that for <code>File type</code>).</p>
+<div class="highlight"><pre><span></span><code>$ ./bp.py 2021-02-22-tokyo-skytree-grayscale.bmp
+File type        : BM
+Size             : 263290 bytes
+Pixel data offset: 1146 bytes
+Size                     : 108 bytes
+Width                    : 512 px
+Height                   : 512 px
+Number of color planes   : 1
+Number of bits per pixel : 8
+Compression type         : 0
+Pixel data size          : 262144 bytes
+Width resolution         : 11811 ppm
+Height resolution        : 11811 ppm
+Number of colors used    : 256
+Number of colors required: 256
+Red bitmask              : 0x73524742
+Green bitmask            : 0x0
+Blue bitmask             : 0x0
+Alpha bitmask            : 0x0
+Color space type         : 0
+Color space endpoints    :
+red  : (0.0, 0.0, 0.0)
+green: (0.0, 0.0, 0.0)
+blue : (0.0, 0.0, 3.0517578125e-05)
+Red gamma                : 0.0
+Green gamma              : 0.0
+Blue gamma               : 0.0
+</code></pre></div>
+                
+              
+              
+                
+
 
               
             </article>
@@ -402,6 +531,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../theory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Theory" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Theory
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../implementation/" class="md-footer__link md-footer__link--next" aria-label="Next: Implementation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Implementation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -426,10 +590,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/code-everything-fundamentals-of-computer-vision/", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "/code-everything-fundamentals-of-computer-vision/assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="/code-everything-fundamentals-of-computer-vision/assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
       
     
   </body>
